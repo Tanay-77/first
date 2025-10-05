@@ -196,3 +196,6 @@
 // const path = require("path")   help to set path it  is inbuilt library
 //console.log (__dirname)
 //console.log(path.join(__dirname,"index.js)")
+
+// REST API stands for Representational State Transfer API. It is a type of API (Application Programming Interface) that allows communication between different systems 
+// over the internet. REST APIs work by sending requests and receiving responses, typically in JSON format, between the client and server.
