@@ -11,30 +11,38 @@ const app = express()
 
 // }    this is our basic function 
 
-app.get('/ride1', (req, res) => {
-  if(isOldEnough(req.query.age)){
+// lets create function using middelware
+
+function isOldEnoughMiddelware(req,res,next){
+    const age = req.query.age
+    if(age >= 14){
+        next()
+     } else {
+        res.json({
+        msg: "you are not of age yet"
+    })
+    }
+}
+
+// we can use app.use() to create middelware that can automatically get called
+// app.use(req,res,next=>{
+// count = count + 1})  it will directly get called
+
+
+app.get('/ride1', isOldEnoughMiddelware ,(req, res) => {
+  
     res.json({
         msg: "you successfully riden the ride 1"
-    })
-  }
-  else{
-    res.status(411).json({
-        msg:"you are not of age yet"
-    })
-  }
+    })   
 })
 
-app.get('/ride2', (req, res) => {
-  if(isOldEnough(req.query.age)){
+app.get('/ride2',isOldEnoughMiddelware , (req, res) => {
+ 
     res.json({
         msg: "you successfully riden the ride 2"
     })
-  }
-  else{
-    res.status(411).json({
-        msg:"you are not of age yet"
-    })
-  }
+ 
+  
 })
 
 app.listen(3000)
